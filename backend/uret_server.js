@@ -2,10 +2,10 @@ import "dotenv/config";
 import { dirname, join } from "path";
 import { fileURLToPath } from "url";
 import { serveLimit } from "./rateLimiters/serveLimiter.js";
+import express from "express";
+import { router } from "./routes/routes.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-
-import express from "express";
 
 const app = express();
 const port = process.env.SERVER_PORT;
@@ -15,6 +15,8 @@ app.use(express.json({ limit: "10mb" }));
 app.get("/api/health", (req, res) => {
   res.send("Hello, Express!");
 });
+
+app.use("/api", router);
 
 app.use(express.static(join(__dirname, "dist")));
 
