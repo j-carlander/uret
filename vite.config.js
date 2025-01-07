@@ -1,7 +1,21 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import "dotenv/config";
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
 
+const port = process.env.SERVER_PORT || 3001;
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-})
+  server: {
+    proxy: {
+      "/api": {
+        target: `http://127.0.0.1:${port}/`,
+        changeOrigin: true,
+        secure: false,
+      },
+    },
+  },
+  build: {
+    outDir: "backend/dist",
+  },
+});

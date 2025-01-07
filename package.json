@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "start": "concurrently \"npm run serverdev\" \"npm run dev\"",
-    "serverdev": "nodemon backend/stenart_server.js",
+    "serverdev": "nodemon backend/uret_server.js",
     "serverprod": "node backend/server.js",
     "dev": "vite",
     "build": "vite build",
