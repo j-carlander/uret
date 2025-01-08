@@ -5,8 +5,10 @@ import App from './App.jsx'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { Login } from './pages/login.jsx';
 import { Register } from './pages/Register.jsx';
+import { Home } from './pages/Home.jsx';
 
 export const pages = [
+  { path: "/", element: <Home />},
   { path: "/logga-in", element: <Login /> },
   { path: "/registrera", element: <Register /> },
 ];
