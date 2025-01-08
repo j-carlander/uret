@@ -1,13 +1,13 @@
 import { useState } from "react";
 import "./App.css";
-import { Login } from "./pages/login";
-import { Register } from "./pages/Register";
+
+import { Outlet } from "react-router-dom";
 
 function App() {
   return (
-    <>
-      <Register />
-    </>
+    <main>
+      <Outlet />
+    </main>
   );
 }
 

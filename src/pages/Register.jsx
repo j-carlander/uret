@@ -3,6 +3,7 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import "./Login.css";
 import { Divider } from "@mui/material";
+import { Link } from "react-router-dom";
 
 const defaultUser = { fname: '', lname: '', email: "", password: "" };
 
@@ -70,9 +71,9 @@ export function Register() {
       </form>
       <Divider />
       <div className="register-btn-container">
-        <Button variant="text" size="small">
+        <Link to={'/logga-in'}><Button variant="text" size="small">
           Logga in
-        </Button>
+        </Button></Link>
       </div>
     </article>
   );
