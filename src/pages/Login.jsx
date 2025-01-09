@@ -3,15 +3,20 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import "./Login.css";
 import { Divider } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import fetchService from "../services/fetchService";
 
 const defaultUser = { email: "", password: "" };
 
 export function Login() {
   const [user, setUser] = useState(defaultUser);
-  function onSubmit(e) {
+  const navigate = useNavigate();
+  async function onSubmit(e) {
     e.preventDefault();
-    console.log("User info provided: ", user);
+    const result = await fetchService.login(user);
+    result.message == "Inloggad"
+      ? navigate("/")
+      : alert("Fel användarnamn eller lösenord");
   }
   return (
     <article className="login-page-wrapper">
@@ -40,8 +45,7 @@ export function Login() {
           <Button
             variant="outlined"
             type="reset"
-            onClick={() => setUser(defaultUser)}
-          >
+            onClick={() => setUser(defaultUser)}>
             Avbryt
           </Button>
           <Button variant="contained" type="submit">
@@ -51,9 +55,11 @@ export function Login() {
       </form>
       <Divider />
       <div className="register-btn-container">
-        <Link to={'/registrera'}><Button variant="text" size="small">
-          Registrera
-        </Button></Link>
+        <Link to={"/registrera"}>
+          <Button variant="text" size="small">
+            Registrera
+          </Button>
+        </Link>
       </div>
     </article>
   );
