@@ -21,6 +21,7 @@ export async function login(req, res) {
     return res.status(403).json({ message: "Fel email eller lösenord!" });
 
   const token = jwtUtil.createToken({ name: user[0].name });
-
-  res.status(200).json({ message: "Inloggad", token });
+  res.cookie("token", token, { httpOnly: true });
+  res.cookie("user", user[0].fname);
+  res.status(200).json({ message: "Inloggad" });
 }
