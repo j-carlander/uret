@@ -2,7 +2,7 @@ import { useState } from "react";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import "./Login.css";
-import { Divider } from "@mui/material";
+import { Divider, Typography } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import fetchService from "../services/fetchService";
 
@@ -20,6 +20,12 @@ export function Login() {
   }
   return (
     <article className="login-page-wrapper">
+      <Typography variant="h3" component="h1" align="center">
+        Uret
+      </Typography>
+      <Typography variant="h4" component="h2" align="center">
+        Logga in
+      </Typography>
       <form className="login-form" onSubmit={onSubmit}>
         <TextField
           id="email-field"
@@ -55,11 +61,9 @@ export function Login() {
       </form>
       <Divider />
       <div className="register-btn-container">
-        <Link to={"/registrera"}>
-          <Button variant="text" size="small">
-            Registrera
-          </Button>
-        </Link>
+        <Button component={Link} variant="text" size="small" to={"/registrera"}>
+          Registrera nytt konto
+        </Button>
       </div>
     </article>
   );

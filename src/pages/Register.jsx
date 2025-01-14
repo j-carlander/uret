@@ -2,10 +2,10 @@ import { useState } from "react";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import "./Login.css";
-import { Divider } from "@mui/material";
+import { Divider, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 
-const defaultUser = { fname: '', lname: '', email: "", password: "" };
+const defaultUser = { fname: "", lname: "", email: "", password: "" };
 
 export function Register() {
   const [user, setUser] = useState(defaultUser);
@@ -15,8 +15,14 @@ export function Register() {
   }
   return (
     <article className="login-page-wrapper">
+      <Typography variant="h3" component="h1" align="center">
+        Uret
+      </Typography>
+      <Typography variant="h4" component="h2" align="center">
+        Registrera nytt konto
+      </Typography>
       <form className="login-form" onSubmit={onSubmit}>
-      <TextField
+        <TextField
           id="fname-field"
           label="Förnamn"
           variant="outlined"
@@ -60,8 +66,7 @@ export function Register() {
           <Button
             variant="outlined"
             type="reset"
-            onClick={() => setUser(defaultUser)}
-          >
+            onClick={() => setUser(defaultUser)}>
             Avbryt
           </Button>
           <Button variant="contained" type="submit">
@@ -71,9 +76,9 @@ export function Register() {
       </form>
       <Divider />
       <div className="register-btn-container">
-        <Link to={'/logga-in'}><Button variant="text" size="small">
-          Logga in
-        </Button></Link>
+        <Button component={Link} to={"/logga-in"} variant="text" size="small">
+          Har du redan konto, Logga in här
+        </Button>
       </div>
     </article>
   );
