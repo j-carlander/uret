@@ -1,7 +1,11 @@
-export function Home(){
-    return(
-        <article>
-            <h1>Uret</h1>
-        </article>
-    )
+import { Typography } from "@mui/material";
+
+export function Home() {
+  return (
+    <article>
+      <Typography variant="h3" component="h1" align="center">
+        Uret
+      </Typography>
+    </article>
+  );
 }
