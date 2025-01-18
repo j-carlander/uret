@@ -1,5 +1,3 @@
-// import sessionService from "./sessionService";
-
 /* Helper function */
 function fetchHelper(url, method, body) {
   const fetchOptions = {
@@ -11,13 +9,6 @@ function fetchHelper(url, method, body) {
     fetchOptions.body = JSON.stringify(body);
   }
 
-  // const token = sessionService.getToken();
-
-  // if (token !== null) {
-  //   fetchOptions.headers.authorization = `Bearer ${token}`;
-  // }
-  console.log("fetch: ", url, method, body);
-
   return fetch("/api" + url, fetchOptions);
 }
 
@@ -26,9 +17,15 @@ async function login(credentials) {
   return await response.json();
 }
 
+async function register(userDetails) {
+  const response = await fetchHelper("/user", "POST", userDetails);
+  return await response.json();
+}
+
 /* Export services */
 const fetchService = {
   login,
+  register,
 };
 
 export default fetchService;

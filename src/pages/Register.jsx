@@ -3,15 +3,21 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import "./Login.css";
 import { Divider, Typography } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import fetchService from "../services/fetchService";
 
 const defaultUser = { fname: "", lname: "", email: "", password: "" };
 
 export function Register() {
   const [user, setUser] = useState(defaultUser);
-  function onSubmit(e) {
+  const navigate = useNavigate();
+
+  async function onSubmit(e) {
     e.preventDefault();
-    console.log("User info provided: ", user);
+    const result = await fetchService.register(user);
+    result.message == "Kontot skapades"
+      ? navigate("/logga-in")
+      : alert("Något gick fel, försök med en annan mailadress");
   }
   return (
     <article className="login-page-wrapper">
