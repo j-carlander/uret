@@ -1,7 +1,7 @@
 import { runQuery } from "../db.js";
 import bcrypt from "bcrypt";
 
-export async function user(req, res) {
+export async function register(req, res) {
   const { fname, lname, email, password } = req.body;
 
   const hashed = await bcrypt.hash(password, 10);
