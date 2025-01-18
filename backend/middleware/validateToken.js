@@ -1,18 +1,16 @@
+import { log } from "console";
 import jwtUtil from "../utils/jwtUtil.js";
 
 export async function validateToken(req, res, next) {
-  // TODO: fix validation for token by cookie
-  const token = req.cookie;
-  console.log("token: ", token);
-  // if (token) {
-  //   const payload = jwtUtil.validateToken(token.replace("Bearer ", ""));
+  const { token } = req.cookies;
 
-  //   if (payload) {
-  //     res.locals.jwtPayload = payload;
-  //     return next();
-  //   }
-  // }
-  // return res.status(401).json({ error: "Invalid or no token provided!" });
+  if (token) {
+    const payload = jwtUtil.validateToken(token);
 
-  next();
+    if (payload) {
+      res.locals.jwtPayload = payload;
+      return next();
+    }
+  }
+  return res.status(401).json({ error: "Invalid or no token provided!" });
 }

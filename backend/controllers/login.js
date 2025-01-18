@@ -22,6 +22,7 @@ export async function login(req, res) {
 
   const token = jwtUtil.createToken({ name: user[0].name });
   res.cookie("token", token, { httpOnly: true });
+  res.cookie("userID", user[0].id, { httpOnly: true });
   res.cookie("user", user[0].fname);
   res.status(200).json({ message: "Inloggad" });
 }
