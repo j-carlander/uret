@@ -1,4 +1,3 @@
-import { log } from "console";
 import jwtUtil from "../utils/jwtUtil.js";
 
 export async function validateToken(req, res, next) {
